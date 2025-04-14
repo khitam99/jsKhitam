@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Tasks - Prompt Style</title>
+</head>
+<body>
+
+  <h1>Basic JavaScript practice</h1>
+
+  <button onclick="checkEvenOrOdd()">Even or Odd checker</button><br><br>
+  <button onclick="sum1ToN()">Sum 1 to N</button><br><br>
+  <button onclick="fizzBuzz()">FizzBuzz</button><br><br>
+  <button onclick="findLargest()">Find Largest Number</button><br><br>
+  <button onclick="countVowels()">Count Vowels</button>
+
+  <script>
+    
+    function checkEvenOrOdd() {
+      const input = prompt("Enter a number:");
+      const number = parseInt(input);
+      if (isNaN(number)) {
+        alert("Please enter a valid number.");
+        return;
+      }
+
+      const result = number % 2 === 0 ? "Even" : "Odd";
+      alert(number + " is " + result);
+
+    }
+
+
+
+    
+
+    function sum1ToN() {
+        const input = prompt("Enter a positive number N:");
+        const n = parseInt(input);
+        if (isNaN(n) || n < 1) {
+            alert("Please enter a valid positive number.");
+            return;
+        }
+
+        let total = 0;
+        for (let i = 1; i <= n; i++) {
+            total += i;
+        }
+
+        alert("The sum of numbers from 1 to " + n + " is: " + total);
+        }
+
+
+
+
+
+    function fizzBuzz() {
+      const input = prompt("Enter how many numbers to run FizzBuzz:");
+      const n = parseInt(input);
+      if (isNaN(n) || n < 1) {
+        alert("Please enter a valid positive number.");
+        return;
+      }
+
+      let message = "";
+      for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+          message += "FizzBuzz\n";
+        } else if (i % 3 === 0) {
+          message += "Fizz\n";
+        } else if (i % 5 === 0) {
+          message += "Buzz\n";
+        } else {
+          message += i + "\n";
+        }
+      }
+      alert(message);
+    }
+
+
+
+
+    function findLargest() {
+  const num1 = parseFloat(prompt("Enter the first number:"));
+  if (isNaN(num1)) {
+    alert("Please enter a valid number for the first input.");
+    return;
+  }
+
+  const num2 = parseFloat(prompt("Enter the second number:"));
+  if (isNaN(num2)) {
+    alert("Please enter a valid number for the second input.");
+    return;
+  }
+
+  let message = " ";
+
+  if (num1 > num2) {
+    message += "The largest number between "+ num1 +" and "+ num2 +" is: " + num1;
+  } else if (num2 > num1) {
+    message += "The largest number between "+ num1 +" and "+ num2 +" is: "+ num2;
+  } else {
+    message += "Both numbers " +num1 +" and " + num1 + " are equal: " + num1;
+  }
+
+  alert(message);
+}
+
+
+
+
+    
+    function countVowels() {
+      const text = prompt("Enter a string:");
+      if (!text) {
+        alert("You must enter some text.");
+        return;
+      }
+
+      const vowels = "aeiouAEIOU";
+      let count = 0;
+      let message = "";
+
+      for (let i = 0; i < text.length; i++) {
+        if (vowels.includes(text[i])) {
+          count++;
+          message += "Vowel found: " + text[i] + "\n";
+        }
+      }
+
+      message += "\nTotal vowels found: " + count;
+
+      alert(message);
+    }
+  </script>
+
+</body>
+</html>
