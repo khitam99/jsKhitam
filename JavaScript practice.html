@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Tasks - Prompt Style</title>
+</head>
+<body>
+
+  <h1>Basic JavaScript Practice</h1>
+
+  <button onclick="reverseArray()">Reverse an Array</button><br><br>
+  <button onclick="filterPositiveNumbers()">Filter Positive Numbers</button><br><br>
+  <button onclick="sumArrayElements()">Sum of Array Elements</button><br><br>
+  <button onclick="countWordOccurrences()">Count Word Occurrences</button>
+
+  <script>
+    function reverseArray() {
+      const input = prompt("Enter an array (e.g., [1, 2, 3, 4]):");
+      try {
+        const arr = JSON.parse(input);
+        const reversed = arr.reverse();
+        alert("Reversed Array: " + JSON.stringify(reversed));
+      } catch (e) {
+        alert("Invalid input. Please enter a valid array.");
+      }
+    }
+
+    function filterPositiveNumbers() {
+      const input = prompt("Enter an array (e.g., [-1, 2, 3, -4]):");
+      try {
+        const arr = JSON.parse(input);
+        const positives = arr.filter(num => num > 0);
+        alert("Positive Numbers: " + JSON.stringify(positives));
+      } catch (e) {
+        alert("Invalid input. Please enter a valid array.");
+      }
+    }
+
+    function sumArrayElements() {
+      const input = prompt("Enter an array (e.g., [1, 2, 3, 4]):");
+      try {
+        const arr = JSON.parse(input);
+        const sum = arr.reduce((total, num) => total + num, 0);
+        alert("Sum of Array Elements: " + sum);
+      } catch (e) {
+        alert("Invalid input. Please enter a valid array.");
+      }
+    }
+
+    function countWordOccurrences() {
+      const input = prompt("Enter a sentence:");
+      const words = input.split(/\s+/);
+      const wordCount = {};
+
+      words.forEach(word => {
+        word = word.toLowerCase();
+        wordCount[word] = (wordCount[word] || 0) + 1;
+      });
+
+      let result = "Word Occurrences: ";
+      for (let word in wordCount) {
+        result += `${word}: ${wordCount[word]}, `;
+      }
+
+      alert(result.slice(0, -2));
+    }
+  </script>
+
+</body>
+</html>
