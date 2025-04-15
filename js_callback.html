@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Callback Practice</title>
+</head>
+<body>
+  <h1>Callback Function Examples</h1>
+  <script>
+    function greet(name, callback) {
+      callback(name);
+    }
+    const nameInput = prompt("Enter your name:");
+    greet(nameInput, (name) => console.log(` Hello, ${name}!`));
+
+  </script>
+</body>
+</html>
