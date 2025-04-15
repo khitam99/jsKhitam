@@ -7,6 +7,8 @@
 <body>
   <h1>Callback Function Examples</h1>
   <script>
+
+  
     function greet(name, callback) {
       callback(name);
     }
@@ -110,8 +112,26 @@ function login(username, callback) {
       });
     });
 
+    //6th task
+    function divide(a, b, successCallback, errorCallback) {
+      if (b === 0) {
+        errorCallback("Division by zero error!");
+      } else {
+        successCallback(a / b);
+      }
+    }
 
+    function onSuccess(result) {
+      console.log(" Division Result:", result);
+    }
 
+    function onError(error) {
+      console.error(" Error:", error);
+    }
+
+    const d1 = parseFloat(prompt(" Enter numerator:"));
+    const d2 = parseFloat(prompt("Enter denominator:"));
+    divide(d1, d2, onSuccess, onError);
 
 
 
