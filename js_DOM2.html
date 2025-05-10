@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Practice</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+      background-color: #f9f9f9;
+      transition: background-color 0.3s ease;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    button, input[type="text"], input[type="password"], input[type="color"], input[type="file"] {
+      margin-top: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    ul li {
+      cursor: pointer;
+      margin: 5px 0;
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+    .highlight {
+      background-color: #ffe58f;
+    }
+
+    #colorBox {
+      width: 100px;
+      height: 100px;
+      background-color: #eee;
+      margin-top: 10px;
+    }
+
+    #sampleImg {
+      margin-top: 10px;
+      max-width: 100%;
+      display: none;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    #altDisplay {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h2>1. Change Page Title</h2>
+    <button onclick="changePageTitle()">Change Title</button>
+  </section>
+
+  <section>
+    <h2>2. Upload Image & Change Alt Text</h2>
+    <input type="file" id="imageInput" accept="image/*">
+    <br>
+    <img id="sampleImg" src="" alt="">
+    <br>
+    <input type="text" id="altInput" placeholder="Enter new alt text">
+    <button onclick="changeImageAlt()">Change Alt</button>
+    <p id="altDisplay"></p>
+  </section>
+
+  <section>
+    <h2>3. Change Button Text</h2>
+    <button id="btnChangeText" onclick="changeButtonText(this)">Click Me</button>
+  </section>
+
+  <section>
+    <h2>4. Toggle Paragraph Font Size</h2>
+    <p id="fontSizePara">Toggle my font size.</p>
+    <button onclick="toggleFontSize()">Toggle Size</button>
+  </section>
+
+  <section>
+    <h2>5. Update a Counter</h2>
+    <p>Counter: <span id="counterValue">0</span></p>
+    <button onclick="incrementCounter()">Increment</button>
+  </section>
+
+  <section>
+    <h2>6. Disable a Button</h2>
+    <button id="disableBtn" onclick="disableMe()">Click to Disable</button>
+  </section>
+
+  <section>
+    <h2>7. Input Focus & Blur Effects</h2>
+    <div id="container"></div>
+  </section>
+
+  <section>
+    <h2>8. Alert Input Value</h2>
+    <input id="alertInput" type="text" placeholder="Type something">
+    <button onclick="showInputValue()">Show Alert</button>
+  </section>
+
+  <section>
+    <h2>9. Change Background Color (Random)</h2>
+    <button onclick="changeBG()">Change Background</button>
+  </section>
+
+  <section>
+    <h2>10. Highlight List Items</h2>
+    <ul id="highlightList">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>11. Show/Hide Password</h2>
+    <input type="password" id="passwordField" placeholder="Password">
+    <label>
+      <input type="checkbox" onclick="togglePassword()"> Show
+    </label>
+  </section>
+
+  <section>
+    <h2>12. Pre-fill Input Field</h2>
+    <input id="prefillInput" type="text">
+    <button onclick="prefill()">Pre-fill</button>
+  </section>
+
+  <section>
+    <h2>13. Uppercase Converter</h2>
+    <input id="upperInput" type="text" placeholder="Type lowercase">
+    <p id="upperDisplay"></p>
+  </section>
+
+  <section>
+    <h2>14. Simple Color Picker</h2>
+    <input type="color" id="colorPicker">
+    <div id="colorBox"></div>
+  </section>
+
+  <section>
+    <h2>15. Reset Page</h2>
+    <button onclick="resetPage()">Reset All</button>
+  </section>
+
+  <script>
+    function changePageTitle() {
+      document.title = "Title Changed!";
+    }
+
+    function changeImageAlt() {
+      const newAlt = document.getElementById("altInput").value.trim();
+      const img = document.getElementById("sampleImg");
+      if (!newAlt) {
+        alert("Please enter a valid alt text.");
+        return;
+      }
+      img.alt = newAlt;
+      document.getElementById("altDisplay").textContent = "Alt Text: " + newAlt;
+      alert("Alt text changed to: " + newAlt);
+    }
+
+    const imageInput = document.getElementById("imageInput");
+    const preview = document.getElementById("sampleImg");
+    imageInput.addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function changeButtonText(button) {
+      button.textContent = "Clicked!";
+    }
+
+    let isLarge = false;
+    function toggleFontSize() {
+      const para = document.getElementById("fontSizePara");
+      para.style.fontSize = isLarge ? "16px" : "24px";
+      isLarge = !isLarge;
+    }
+
+    let counter = 0;
+    function incrementCounter() {
+      counter++;
+      document.getElementById("counterValue").textContent = counter;
+    }
+
+    function disableMe() {
+      document.getElementById("disableBtn").disabled = true;
+    }
+
+    function InputFieldFocusAndBlurEffects() {
+      let inputField = document.createElement("input");
+      inputField.type = "text";
+      inputField.placeholder = "Focus on me!";
+      inputField.style.padding = "10px";
+      inputField.style.borderRadius = "5px";
+      inputField.style.border = "1px solid #3498DB";
+      inputField.style.transition = "all 0.3s ease";
+      document.getElementById("container").appendChild(inputField);
+      inputField.onfocus = function() {
+        inputField.style.borderColor = "#e74c3c";
+        inputField.style.boxShadow = "0 0 5px rgba(231, 76, 60, 0.5)";
+      };
+      inputField.onblur = function() {
+        inputField.style.borderColor = "#3498DB";
+        inputField.style.boxShadow = "none";
+      };
+    }
+
+    InputFieldFocusAndBlurEffects();
+
+    function showInputValue() {
+      const value = document.getElementById("alertInput").value;
+      alert("You typed: " + value);
+    }
+
+    function changeBG() {
+      const colors = ["#ff6b6b", "#1abc9c", "#f39c12", "#9b59b6", "#2ecc71"];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      document.body.style.backgroundColor = color;
+    }
+
+    const listItems = document.querySelectorAll("#highlightList li");
+    listItems.forEach(item => {
+      item.addEventListener("click", () => {
+        listItems.forEach(li => li.classList.remove("highlight"));
+        item.classList.add("highlight");
+      });
+    });
+
+    function togglePassword() {
+      const pwd = document.getElementById("passwordField");
+      pwd.type = pwd.type === "password" ? "text" : "password";
+    }
+
+    function prefill() {
+      document.getElementById("prefillInput").value = "Pre-filled text!";
+    }
+
+    const upperInput = document.getElementById("upperInput");
+    upperInput.addEventListener("input", () => {
+      document.getElementById("upperDisplay").textContent = upperInput.value.toUpperCase();
+    });
+
+    const colorPicker = document.getElementById("colorPicker");
+    colorPicker.addEventListener("input", () => {
+      document.getElementById("colorBox").style.backgroundColor = colorPicker.value;
+    });
+
+    function resetPage() {
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>

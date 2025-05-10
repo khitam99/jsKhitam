@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Manipulation</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: sans-serif;
+      padding: 30px;
+      transition: background-color 0.3s;
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h1 id="mainHeading">Hello World!!</h1>
+    <button onclick="changeHeadingText()">Change Heading</button>
+  </section>
+
+  <section>
+    <button onclick="changeBackgroundColor()">Change Background Color</button>
+  </section>
+
+  <section>
+    <p id="togglePara">Abtal is a passionate digital team known for crafting powerful solutions with Java. Their expertise drives innovation and clean code.</p>
+    <button onclick="toggleParagraph()">Toggle Paragraph</button>
+  </section>
+
+  <section>
+    <ul id="itemList">
+      <li>Item 1</li>
+    </ul>
+    <button onclick="addItem()">Add List Item</button>
+  </section>
+
+  <section>
+    <div id="removeMe">Remove this element</div>
+    <button onclick="removeElement()">Remove Element</button>
+  </section>
+
+  <script>
+    function changeHeadingText() {
+      document.getElementById("mainHeading").textContent = "Hello Abtal A Digital Team!!";
+    }
+
+    const backgroundColors = ["white", "lightcoral", "lightblue"];
+    let currentColorIndex = 0;
+
+    function changeBackgroundColor() {
+      currentColorIndex = (currentColorIndex + 1) % backgroundColors.length;
+      document.body.style.backgroundColor = backgroundColors[currentColorIndex];
+    }
+
+    function toggleParagraph() {
+      const para = document.getElementById("togglePara");
+      para.style.display = (para.style.display === "none") ? "block" : "none";
+    }
+
+    function addItem() {
+      const newItem = document.createElement("li");
+      newItem.textContent = "New Item Added";
+      document.getElementById("itemList").appendChild(newItem);
+    }
+
+    function removeElement() {
+      const element = document.getElementById("removeMe");
+      if (element) {
+        element.remove();
+      }
+    }
+  </script>
+
+</body>
+</html>
